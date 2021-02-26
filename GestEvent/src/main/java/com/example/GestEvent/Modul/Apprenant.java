@@ -1,7 +1,5 @@
 package com.example.GestEvent.Modul;
 
-import org.hibernate.mapping.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,21 +7,25 @@ public class Apprenant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idApprenant;
-    @JoinColumn(name="idApprenant")
-    private Users idUsers;
-    private int idSpecialite;
+    @OneToOne
+    @JoinColumn(name="idUser")
+    private Users idusers;
+
+    @ManyToOne
+    @JoinColumn(name="idSpecialite")
+    private Specialite idSpecialite;
 
     public Apprenant() {
     }
 
-    public Apprenant(int idApprenant, Users idUsers, int idSpecialite) {
+    public Apprenant(int idApprenant, Users idUsers, Specialite idSpecialite) {
         this.idApprenant = idApprenant;
-        this.idUsers = idUsers;
+        this.idusers = idUsers;
         this.idSpecialite = idSpecialite;
     }
 
-    public Apprenant(Users idUsers, int idSpecialite) {
-        this.idUsers = idUsers;
+    public Apprenant(Users idUsers, Specialite idSpecialite) {
+        this.idusers = idUsers;
         this.idSpecialite = idSpecialite;
     }
 
@@ -36,18 +38,26 @@ public class Apprenant {
     }
 
     public Users getIdUsers() {
-        return idUsers;
+        return idusers;
     }
 
     public void setIdUsers(Users idUsers) {
-        this.idUsers = idUsers;
+        this.idusers = idUsers;
     }
 
-    public int getIdSpecialite() {
+    public Specialite getIdSpecialite() {
         return idSpecialite;
     }
 
-    public void setIdSpecialite(int idSpecialite) {
+    public void setIdSpecialite(Specialite idSpecialite) {
         this.idSpecialite = idSpecialite;
+    }
+
+    public void showApprenant() {
+        System.out.println( "Apprenant{" +
+                "idApprenant=" + idApprenant +
+                ", idUsers=" + idusers +
+                ", idSpecialite=" + idSpecialite +
+                '}');
     }
 }

@@ -18,12 +18,14 @@
         <!-- Set "true" to show SQL statements -->
 <!--        <property name="hibernate.show_sql">true</property>-->
 
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
 
         <!-- mapping class using annotation -->
-<!--        <mapping class="com.example.GestEvent.Modul.Users"/>-->
+        <mapping class="com.example.GestEvent.Modul.Users"/>
+        <mapping class="com.example.GestEvent.Modul.Specialite"/>
         <mapping class="com.example.GestEvent.Modul.Apprenant"/>
+        <mapping class="com.example.GestEvent.Modul.Formateur"/>
 
     </session-factory>
 

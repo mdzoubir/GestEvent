@@ -23,6 +23,9 @@
 
         <!-- mapping class using annotation -->
         <mapping class="com.example.GestEvent.Modul.Users"/>
+        <mapping class="com.example.GestEvent.Modul.Specialite"/>
+        <mapping class="com.example.GestEvent.Modul.Apprenant"/>
+        <mapping class="com.example.GestEvent.Modul.Formateur"/>
 
     </session-factory>
 
