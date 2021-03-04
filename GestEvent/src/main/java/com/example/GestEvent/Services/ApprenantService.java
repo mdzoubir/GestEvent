@@ -66,14 +66,11 @@ public class ApprenantService {
             apprenant.setIdUsers(a.getIdUsers());
             apprenant.setIdSpecialite(a.getIdSpecialite());
             System.out.println("Apprenant update");
-
         }
         else{
             System.out.println("Apprenant does not exist");
         }
         session.getTransaction().commit();
-
-
         return apprenant;
     }
 

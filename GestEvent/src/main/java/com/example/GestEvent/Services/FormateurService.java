@@ -1,9 +1,10 @@
 package com.example.GestEvent.Services;
 
 import com.example.GestEvent.HibernateUtil;
-import com.example.GestEvent.Modul.Apprenant;
 import com.example.GestEvent.Modul.Formateur;
+import com.example.GestEvent.Modul.Users;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -17,7 +18,6 @@ public class FormateurService {
         session.getTransaction().commit();
         System.out.println("add formateur");
     }
-
     public Formateur getFormateurById(int id) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -34,8 +34,6 @@ public class FormateurService {
         return formateurList;
     }
 
-
-    //delete Formateur
     public void deleteFormateur(int id){
         Formateur formateur;
         session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -44,33 +42,33 @@ public class FormateurService {
         if (formateur != null){
             session.delete(formateur);
             session.flush();
-            System.out.println("Formateur delete");
+            System.out.println("User formateur");
 
         }
         else{
-            System.out.println("Formateur does not exist");
+            System.out.println("formateur does not exist");
         }
         session.getTransaction().commit();
     }
 
-
-    //update Formateur
-    public Formateur updateFormateur(Formateur f){
-        Formateur formateur;
+    public Formateur updateFormateur(Formateur formateur){
+        Formateur formateurs;
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        formateur = session.find(Formateur.class, f.getIdFormatur());
-        if (formateur != null){
-            formateur.setIdusers(f.getIdusers());
-            formateur.setIdSpecialite(f.getIdSpecialite());
-            System.out.println("Formateur update");
+        formateurs = session.find(Formateur.class, formateur.getIdFormatur());
+        if (formateurs != null){
+            formateurs.setIdusers(formateur.getIdusers());
+            formateurs.setIdSpecialite(formateur.getIdSpecialite());
+            System.out.println("formateur update");
 
         }
         else{
-            System.out.println("Formateur does not exist");
+            System.out.println("formateur does not exist");
         }
         session.getTransaction().commit();
 
-        return formateur;
+
+        return formateurs;
     }
+
 }

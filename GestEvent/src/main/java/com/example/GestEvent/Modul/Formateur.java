@@ -7,7 +7,7 @@ public class Formateur {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idFormatur;
     @OneToOne
-    @JoinColumn(name="idUser")
+    @JoinColumn(name="idUsers")
     private Users idusers;
     @ManyToOne
     @JoinColumn(name="idSpecialite")
@@ -16,13 +16,13 @@ public class Formateur {
     public Formateur() {
     }
 
-    public Formateur(Users idusers, Specialite idSpecialite) {
+    public Formateur(int idFormatur, Users idusers, Specialite idSpecialite) {
+        this.idFormatur = idFormatur;
         this.idusers = idusers;
         this.idSpecialite = idSpecialite;
     }
 
-    public Formateur(int idFormatur, Users idusers, Specialite idSpecialite) {
-        this.idFormatur = idFormatur;
+    public Formateur(Users idusers, Specialite idSpecialite) {
         this.idusers = idusers;
         this.idSpecialite = idSpecialite;
     }
@@ -49,5 +49,13 @@ public class Formateur {
 
     public void setIdSpecialite(Specialite idSpecialite) {
         this.idSpecialite = idSpecialite;
+    }
+
+    public void showFormateur() {
+        System.out.println("Formateur{" +
+                "idFormatur=" + idFormatur +
+                ", idusers=" + idusers +
+                ", idSpecialite=" + idSpecialite +
+                '}');
     }
 }

@@ -4,6 +4,7 @@ import com.example.GestEvent.HibernateUtil;
 import com.example.GestEvent.Modul.Specialite;
 import com.example.GestEvent.Modul.Users;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class SpecialiteService {
     public Specialite getSpecialiteById(int id) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Specialite specialite = session.load(Specialite.class, id);
+        Specialite specialite = session.find(Specialite.class, id);
+        session.getTransaction().commit();
         return specialite;
     }
 
@@ -33,6 +35,7 @@ public class SpecialiteService {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         List listSpecialite = session.createQuery("from Specialite").list();
+        session.getTransaction().commit();
         return listSpecialite;
     }
 
@@ -71,5 +74,22 @@ public class SpecialiteService {
 
 
         return specialite;
+    }
+
+    //get specailite by name
+    public Specialite getSpecialiteByName(String name){
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Query query =  session.createQuery("from Specialite where nomSpecialite=: name");
+        query.setParameter("name", name);
+        try {
+            Specialite specialite = (Specialite) query.getSingleResult();
+            session.getTransaction().commit();
+            return specialite;
+        }
+        catch (Exception e){
+            return null;
+        }
+
     }
 }
